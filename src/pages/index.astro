@@ -1,7 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+import { getCollection } from 'astro:content';
+const members = await getCollection('members')
+
 ---
 
 <Layout title="Welcome to Astro.">
+  <ul>
+    <li>
+      {members.map((member) => <article>
+        <h2>{member.data.firstname} {member.data.lastname}</h2>
 
+        <pre>
+          {member}
+        </pre>
+      </article>)}
+    </li>
+  </ul>
 </Layout>
