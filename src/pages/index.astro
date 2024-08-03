@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IconBtn from '../components/IconBtn.astro';
 
 import { getCollection } from 'astro:content';
 const members = await getCollection('members')
@@ -11,10 +12,8 @@ const members = await getCollection('members')
     <li>
       {members.map((member) => <article>
         <h2>{member.data.firstname} {member.data.lastname}</h2>
-
-        <pre>
-          {member}
-        </pre>
+        
+        <IconBtn action=""/>
       </article>)}
     </li>
   </ul>

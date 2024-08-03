@@ -1,4 +1,7 @@
 ---
+import 'css.gg/icons/icons.css';
+import Navbar from '../components/Navbar.astro';
+
 interface Props {
 	title?: string;
 }
@@ -17,6 +20,8 @@ const { title = 'Welcome' } = Astro.props;
 		<title>Astro Quickstart | {title}</title>
 	</head>
 	<body>
+		<Navbar />
+		
 		<slot />
 	</body>
 </html>
