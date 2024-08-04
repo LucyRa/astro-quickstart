@@ -1,0 +1,15 @@
+---
+import type { CallToAction } from '../interfaces';
+
+interface Props extends CallToAction {}
+
+const { url, text = 'Learn More', external = false, className } = Astro.props
+---
+
+<a 
+  href={ url } 
+  target={ external ? '_blank' : '_self' }
+  class:list={['btn', className]}
+>
+  { text }
+</a>
