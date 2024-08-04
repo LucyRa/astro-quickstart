@@ -1,0 +1,20 @@
+---
+import Accordion from "./Accordion.astro";
+
+interface Object {
+  summary: string,
+  detail: string
+}
+
+interface Props {
+  accordions: Array<Object>;
+}
+
+const { accordions } = Astro.props;
+---
+
+<ul class="accordion-list">
+  <li>
+    { accordions.map(accordion => <Accordion summary={ accordion.summary } detail={ accordion.detail } />) }
+  </li>
+</ul>

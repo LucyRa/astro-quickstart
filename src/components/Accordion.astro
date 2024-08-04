@@ -1,0 +1,14 @@
+---
+interface Props {
+  summary: string;
+  detail: string;
+}
+
+const { summary, detail } = Astro.props;
+---
+
+<details class="accordion">
+  <summary>{ summary }</summary>
+
+  { detail }
+</details>

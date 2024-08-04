@@ -11,8 +11,32 @@ const { type = "button", action, className = "", icon = "abstract" } = Astro.pro
 
 <button
   type={type}
-  data-target-action={action}
+  data-action={action}
   class:list={['icon-btn', className]}
 >
   <i class={'gg-' + icon}></i>
 </button>
+
+<script>
+  import { navAction } from '../scripts/actions'
+
+  const iconActionEls = document.querySelectorAll('.icon-btn[data-action]')
+  if (iconActionEls) {
+    Array.from(iconActionEls, actionEl => {
+      let action = actionEl.dataset.action ?? null
+      if (action) {
+        switch (action) {
+          case 'nav':
+            actionEl.addEventListener('click', () => {
+              navAction();
+            })
+            break;
+        
+          default:
+            console.warn(`No matching action found: ${action}`)
+            break;
+        }
+      }
+    })
+  }
+</script>

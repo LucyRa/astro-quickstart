@@ -3,18 +3,18 @@ import Layout from '../layouts/Layout.astro';
 import IconBtn from '../components/IconBtn.astro';
 
 import { getCollection } from 'astro:content';
-const members = await getCollection('members')
+// const members = await getCollection('members')
 
 ---
 
 <Layout title="Welcome to Astro.">
-  <ul>
-    <li>
-      {members.map((member) => <article>
-        <h2>{member.data.firstname} {member.data.lastname}</h2>
-        
-        <IconBtn action=""/>
-      </article>)}
-    </li>
-  </ul>
+  <Fragment slot="hero">
+    <!-- Hero -->
+  </Fragment>
+
+  <Fragment slot="main">
+    <ul>
+      
+    </ul>
+  </Fragment>
 </Layout>

@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import Card from './Card.astro';
+
+interface Props {
+  collectionName: string;
+}
+
+const { collectionName = "services" } = Astro.props;
+const entries = await getCollection(collectionName)
+---
+
+<ul class="card-grid">
+  
+</ul>

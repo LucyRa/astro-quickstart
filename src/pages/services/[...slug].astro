@@ -8,7 +8,7 @@
     throw new Error('Slug is required')
   }
 
-  const entry = await getEntry('components', slug)
+  const entry = await getEntry('services', slug)
 
   if (entry === undefined) {
     return Astro.redirect('/404')
@@ -18,8 +18,7 @@
 ---
 
 <Layout>
-  <h1>
-    { entry.data.title }
-  </h1>
+  <!-- Image -->
+
   <Content />
 </Layout>

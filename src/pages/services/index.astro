@@ -1,0 +1,22 @@
+---
+  import CardGrid from '../../components/CardGrid.astro';
+import Layout from '../../layouts/Layout.astro';
+
+  import { getCollection } from 'astro:content';
+
+  const serviceEntries = await getCollection('services')
+---
+
+<Layout>
+  <Fragment slot="hero">
+    <!-- Hero -->
+  </Fragment>
+
+  <Fragment slot="main">
+    <section>
+      <div class="container">
+        <CardGrid collectionName="services" />
+      </div>
+    </section>
+  </Fragment>
+</Layout>

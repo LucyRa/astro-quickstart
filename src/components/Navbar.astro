@@ -11,10 +11,20 @@ import IconBtn from "./IconBtn.astro";
   <div class="container">
     <!-- Logo -->
     
-    <IconBtn action="nav" icon="menu-oreos" />
+    <IconBtn action="nav" icon="menu-motion" />
 
-    <ul class="nav-items">
+    <ul class="nav-items" data-action-target="nav">
       <!-- Nav items -->
     </ul>
   </div>
 </nav>
+
+<style lang="scss">
+  nav.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+</style>

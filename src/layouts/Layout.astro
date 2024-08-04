@@ -23,7 +23,9 @@ const { title = 'Welcome' } = Astro.props;
 	<body>
 		<Navbar />
 
-		<slot />
+		<slot name="hero" />
+
+		<slot name="main" />
 
 		<Footer />
 	</body>
