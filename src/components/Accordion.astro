@@ -1,7 +1,9 @@
 ---
+import CopyMap from './CopyMap.astro';
+
 interface Props {
   summary: string;
-  detail: string;
+  detail: Array<string>;
 }
 
 const { summary, detail } = Astro.props;
@@ -10,5 +12,5 @@ const { summary, detail } = Astro.props;
 <details class="accordion">
   <summary>{ summary }</summary>
 
-  { detail }
+  <CopyMap copy={ detail } />
 </details>
