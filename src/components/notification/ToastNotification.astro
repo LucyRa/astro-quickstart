@@ -1,0 +1,21 @@
+---
+import IconBtn from '../IconBtn.astro';
+
+interface Props {
+  status: string;
+  title: string;
+  message?: string
+}
+
+const { status, title, message } = Astro.props;
+---
+
+<dialog class:list={['toast', 'toast--' + status]}>
+  <div>
+    <h2>{ title }</h2>
+
+    { message && <p>{ message }</p> }
+  </div>
+
+  <IconBtn icon='close' />
+</dialog>
