@@ -1,0 +1,25 @@
+---
+import type { CallToAction, Image } from '../../interfaces';
+import CallToActionList from '../CallToActionList.astro';
+
+interface Props {
+  heading: string;
+  strapline?: string;
+  image: Image;
+  ctas: Array<CallToAction> | null;
+}
+
+const {heading, strapline, image, ctas} = Astro.props;
+---
+
+<header class="hero hero--welcome">
+  <div class="container">
+    <h1>{ heading }</h1>
+
+    { strapline && <p>{ strapline }</p> }
+
+    { ctas && <CallToActionList ctas={ ctas } />}
+  </div>
+
+  <img src={ image.src } alt={ image.alt } class="hero__bg" />
+</header>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  copy: Array<string>;
+}
+
+const { copy } = Astro.props;
+---
+
+<>
+{ copy && copy.map(paragraph => {
+  <p>
+    { paragraph }
+  </p>
+}) }
+</>

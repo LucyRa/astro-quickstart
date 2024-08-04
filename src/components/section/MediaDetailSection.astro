@@ -1,17 +1,12 @@
 ---
-import type { CallToAction } from '../../interfaces';
-import LinkBtn from '../LinkBtn.astro';
+import type { CallToAction, Image, Video } from '../../interfaces';
+import CallToActionList from '../CallToActionList.astro';
+import CopyMap from '../CopyMap.astro';
 
 interface Props {
   title: string;
-  image?: {
-    src: string;
-    alt: string;
-  } | null;
-  video?: {
-    src: string;
-    alt: string;
-  } | null;
+  image?: Image | null;
+  video?: Video | null;
   copy: Array<string>;
   ctas: Array<CallToAction> | null;
 }
@@ -30,17 +25,9 @@ const { title, image = null, video = null, copy, ctas = null } = Astro.props;
     <div>
       <h2>{ title }</h2>
 
-      { copy && copy.map(paragraph => {
-        <p>
-          { paragraph }
-        </p>
-      }) }
+      <CopyMap copy={ copy } />
 
-      { ctas && <ul>
-        { ctas.map(cta => {
-          <LinkBtn url={ cta.url } text={ cta.text } external={ cta.external } className={ cta.className } />
-        }) }
-      </ul> }
+      { ctas && <CallToActionList ctas={ ctas } /> }
     </div>
   </article>
 </section>

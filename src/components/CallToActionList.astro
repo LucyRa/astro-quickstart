@@ -1,0 +1,18 @@
+---
+import type { CallToAction } from '../interfaces';
+import LinkBtn from './LinkBtn.astro';
+
+interface Props {
+  ctas: Array<CallToAction>;
+}
+
+const { ctas } = Astro.props;
+---
+
+<ul class="cta-list">
+  { ctas.map(cta => {
+    <li>
+      <LinkBtn url={ cta.url } text={ cta.text } external={ cta.external } className={ cta.className } />
+    </li>
+  }) }
+</ul>
