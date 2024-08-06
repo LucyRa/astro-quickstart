@@ -6,7 +6,7 @@ image: {
   src: "",
   alt: "Example image alt text"
 }
-slug: 0001-example-service-entry
+slug: example-service
 ---
 
 # Example Service

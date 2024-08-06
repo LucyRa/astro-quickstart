@@ -1,6 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import IconBtn from "./IconBtn.astro";
 
+const serviceEntries = getCollection('services')
 ---
 
 <nav
@@ -14,7 +16,21 @@ import IconBtn from "./IconBtn.astro";
     <IconBtn action="nav" icon="menu-motion" />
 
     <ul class="nav-items" data-action-target="nav">
-      <!-- Nav items -->
+      <li>
+        <a href="/">Home</a>
+      </li>
+
+      <li>
+        <a href="/services">Services</a>
+
+        <ul class="nav-items--nested">
+          <li>
+            <a href="/services/example-service">
+
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>
