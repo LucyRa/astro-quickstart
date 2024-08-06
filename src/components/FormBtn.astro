@@ -1,0 +1,19 @@
+---
+interface Props {
+  type?: "submit" | "reset" | null | undefined;
+  text: string;
+  icon?: string;
+  className?: string;
+}
+
+const { type = "submit", text = "Learn more", className = "btn--action", icon = "abstract" } = Astro.props;
+---
+
+<button
+  type={type}
+  class:list={['btn', className]}
+>
+  { icon && <i class={'gg-' + icon}></i> }
+
+  { text }
+</button>
