@@ -1,0 +1,19 @@
+---
+interface Props {
+  method?: "POST" | "GET" | "dialog" | null | undefined;
+  action?: string | null | undefined;
+  // inputs: Array<{ type: string,  }>
+}
+
+const { method = "GET", action } = Astro.props
+---
+
+<form
+  method={ method }
+  action={ action }
+>
+  <!-- TODO:
+    [ ] Create input el components
+    [ ] Work out required parameters for array of inputs
+  -->
+</form>
