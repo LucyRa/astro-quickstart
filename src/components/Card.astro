@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import TagList from './TagList.astro';
 interface Props {
 	entry: CollectionEntry<'services'>;
-	Tag: string
+	Tag?: string
 }
 
 const { entry, Tag = "li" } = Astro.props;
