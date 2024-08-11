@@ -1,6 +1,6 @@
 ---
 interface Props {
-  type?: string;
+  type?: "submit" | "reset" | "button" | null | undefined;
   action?: string;
   icon?: string;
   className?: string;
@@ -18,25 +18,12 @@ const { type = "button", action, className = "", icon = "abstract" } = Astro.pro
 </button>
 
 <script>
-  import { navAction } from '../scripts/actions'
+  import { actionHandler } from '../scripts/actions'
 
   const iconActionEls = document.querySelectorAll('.icon-btn[data-action]')
   if (iconActionEls) {
     Array.from(iconActionEls, actionEl => {
-      let action = actionEl.dataset.action ?? null
-      if (action) {
-        switch (action) {
-          case 'nav':
-            actionEl.addEventListener('click', () => {
-              navAction();
-            })
-            break;
-        
-          default:
-            console.warn(`No matching action found: ${action}`)
-            break;
-        }
-      }
-    })
+      actionHandler(actionEl)
+    });
   }
 </script>

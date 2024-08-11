@@ -3,7 +3,7 @@ id: 0001
 title: "Example Service"
 tags: ["general", "client"]
 image: {
-  src: "",
+  src: "/public/images/service-1.jpg",
   alt: "Example image alt text"
 }
 slug: example-service

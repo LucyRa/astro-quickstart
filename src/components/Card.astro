@@ -1,9 +1,24 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import TagList from './TagList.astro';
 interface Props {
-	entry: CollectionEntry<'services'>
+	entry: CollectionEntry<'services'>;
+	Tag: string
 }
 
-// const { href, title, body } = Astro.props;
+const { entry, Tag = "li" } = Astro.props;
 ---
 
+<Tag class:list={['card', Tag && 'card--' + Tag]}>
+	<a href={ entry.slug && `/${entry.collection}/${entry.slug}`  }>
+		<img src={ entry.data.image.src ?? "" } alt={ entry.data.image.src ?? "Card image" } />
+	</a>
+
+	<h3>
+		<a href={ entry.slug && `/${entry.collection}/${entry.slug}`  }>
+			{ entry.data.title }
+		</a>
+	</h3>
+
+	<TagList tags={ entry.data.tags } />
+</Tag>

@@ -7,9 +7,11 @@ interface Props {
 }
 
 const { collectionName = "services" } = Astro.props;
-const entries = await getCollection(collectionName)
+const entries = await getCollection(`${collectionName}`)
 ---
 
 <ul class="card-grid">
-  
+  { entries.map(entry => {
+    <Card entry={ entry } />
+  }) }
 </ul>

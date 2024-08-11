@@ -1,0 +1,21 @@
+---
+import { capitalise } from '../utils'
+
+interface Props {
+  tags: Array<{ name: string, colour: string }>;
+  collection?: string | null;
+}
+
+const { tags, collection } = Astro.props
+---
+{ tags.length &&  
+  <ul class="tag-list">
+    { tags.map(tag => {
+      <li class:list={['tag', tag.colour && 'tag--' + tag.colour]}>
+        { collection ? <a href={ `/${collection}?tag=${tag.name}` }>
+          { capitalise(tag.name) }
+        </a> : <>{ capitalise(tag.name) }</> }
+      </li>
+    }) }
+  </ul>
+}

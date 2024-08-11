@@ -1,3 +1,24 @@
+const actionHandler = (actionEl) => {
+  let action = actionEl.dataset.action
+
+  if (action) {
+    switch (action) {
+      case 'nav':
+        actionEl.addEventListener('click', () => {
+          navAction();
+        })
+        break;
+    
+      default:
+        console.warn(`No matching action found: ${action}`)
+        break;
+    }
+  } else {
+    console.warn('Action handler: No action found.');
+    return;
+  }
+}
+
 /**
  * Nav Action
  * ---
@@ -16,4 +37,4 @@ const navAction = () => {
   }
 }
 
-export { navAction };
+export { actionHandler };
