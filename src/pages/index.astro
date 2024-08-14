@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import IconBtn from '../components/IconBtn.astro';
 
 import { getCollection } from 'astro:content';
+import DonutChart from '../components/chart/DonutChart.astro';
 // const members = await getCollection('members')
 
 ---
@@ -13,8 +14,6 @@ import { getCollection } from 'astro:content';
   </Fragment>
 
   <Fragment slot="main">
-    <ul>
-      
-    </ul>
+    <DonutChart name="test" />
   </Fragment>
 </Layout>
