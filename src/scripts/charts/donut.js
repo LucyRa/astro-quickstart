@@ -17,6 +17,7 @@ class Donut {
     },]
     this.el = null
     this.dimensions = { width: 500, radius: 250 }
+    this.tau = Math.PI * 2
   }
 
   // TODO: Turn into a promise...
@@ -33,42 +34,58 @@ class Donut {
     if (!el) return console.warn('Donut, instance dimensions: No target element');
 
     this.dimensions.width = el.outerWidth
-    this.dimensions.radius = this.dimensions.width / 2;
+    this.dimensions.radius = this.dimensions.radius;
   }
 
 
   buildChartSvg () {
+    const svg = d3.create('svg')
+      .attr('width', this.dimensions.width)
+      .attr('width', this.dimensions.width)
+      .attr("viewBox", [-this.dimensions.radius, -this.dimensions.radius, this.dimensions.width, this.dimensions.width])
+      .attr("style", "max-width: 100%; width: auto;")
+
+    const g = svg.append('g')
+
     const arc = d3.arc()
       .innerRadius(this.dimensions.radius * 0.8)
       .outerRadius(this.dimensions.radius)
       .cornerRadius(6)
+
+    const arcBg = g.append('path')
+      .datum({ endAngle: this.tau })
+      .style('fill', '#eeeeee')
+      .attr('d', arc)
 
     const pie = d3.pie()
       .padAngle(0.024)
       .sort(null)
       .value(d => d.count)
 
-    const colours = d3.scaleOrdinal(
-      this.data.map(d => d.name), d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), 
-      this.data.length
-    ).reverse())
+    const colourScheme = ['#9F1654', '#29B298', '#378A3E', '#2781B9', '#E67D1E', '#222145', '#DFC13F', '#806FB0', '#EE78A6', '#0B705A']
 
-    const svg = d3.create('svg')
-      .attr('width', this.dimensions.width)
-      .attr('width', this.dimensions.width)
-      .attr("viewBox", [-this.dimensions.width / 2, -this.dimensions.width / 2, this.dimensions.width, this.dimensions.width])
-      .attr("style", "max-width: 100%; width: auto;")
+    const colours = d3.scaleOrdinal()
+      .domain(this.data.map(d => d.name))
+      .range(colourScheme)
 
-    svg.append('g')
-      .selectAll()
+    const gData = svg.append('g')
+    gData.selectAll('path')
       .data(pie(this.data))
-      .join('path')
-        .attr('fill', d => colours(d.data.name))
-        .attr('d', arc)
-      .append('title')
-        .text(d => `${d.data.name}: ${d.data.count}`)
+      .enter()
+      .append('path')
+      .attr('fill', d => colours(d.data.name))
+      .transition()
+      .duration(750)
+      .attrTween('d', (d) => {
+        const i = d3.interpolate(d.startAngle, d.endAngle);
+    
+        return (t) => {
+          d.endAngle = i(t);
+          return arc(d);
+        };
+      })
 
-    return svg.node()
+    return svg.node();
   }
 
   init () {
