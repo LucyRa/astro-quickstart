@@ -9,6 +9,7 @@ const { name = "test", dataSrc } = Astro.props;
 
 <div
   id={ `donut-chart-${name}` }
+  class="chart chart--donut"
   data-chart-donut
 ></div>
 
@@ -18,3 +19,9 @@ const { name = "test", dataSrc } = Astro.props;
   const donutChart = new Donut()
   donutChart.init()
 </script>
+
+<style>
+  .chart--donut {
+    width: 500px;
+  }
+</style>

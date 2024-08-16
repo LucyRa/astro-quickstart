@@ -16,7 +16,7 @@ class Donut {
       count: 20
     },]
     this.el = null
-    this.dimensions = { width: 0, radius: 0 }
+    this.dimensions = { width: 500, radius: 250 }
   }
 
   // TODO: Turn into a promise...
@@ -37,7 +37,7 @@ class Donut {
   }
 
 
-  buildChart () {
+  buildChartSvg () {
     const arc = d3.arc()
       .innerRadius(this.dimensions.radius * 0.8)
       .outerRadius(this.dimensions.radius)
@@ -54,23 +54,29 @@ class Donut {
     ).reverse())
 
     const svg = d3.create('svg')
-      .attr('width', this.height)
-      .attr('height', this.height)
-      .attr("viewBox", [-this.height / 2, -this.height / 2, this.height, this.height])
-      .attr("style", "max-width: 100%; height: auto;")
+      .attr('width', this.dimensions.width)
+      .attr('width', this.dimensions.width)
+      .attr("viewBox", [-this.dimensions.width / 2, -this.dimensions.width / 2, this.dimensions.width, this.dimensions.width])
+      .attr("style", "max-width: 100%; width: auto;")
 
     svg.append('g')
       .selectAll()
       .data(pie(this.data))
+      .join('path')
+        .attr('fill', d => colours(d.data.name))
+        .attr('d', arc)
+      .append('title')
+        .text(d => `${d.data.name}: ${d.data.count}`)
 
-    console.log(svg)
+    return svg.node()
   }
 
   init () {
     console.log('Donut: init()')
     this.setInstanceElement(this.name)
 
-    this.buildChart()
+    let svg = this.buildChartSvg()
+    this.el.append(svg);
   }
 
 
