@@ -45,14 +45,13 @@ class Donut {
       .attr("viewBox", [-this.dimensions.radius, -this.dimensions.radius, this.dimensions.width, this.dimensions.width])
       .attr("style", "max-width: 100%; width: auto;")
 
-    const g = svg.append('g')
-
     const arc = d3.arc()
       .innerRadius(this.dimensions.radius * 0.8)
       .outerRadius(this.dimensions.radius)
       .cornerRadius(6)
 
-    const arcBg = g.append('path')
+    const g = svg.append('g')
+    g.append('path')
       .datum({ endAngle: this.tau })
       .style('fill', '#eeeeee')
       .attr('d', arc)

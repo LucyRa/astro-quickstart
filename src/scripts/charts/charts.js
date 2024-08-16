@@ -1,4 +1,4 @@
-import { initDonut } from "./donut";
+import { initDonut } from "./Donut";
 
 export default function charts () {
   console.log('Charts :)')
