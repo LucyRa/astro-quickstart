@@ -78,6 +78,8 @@ class Donut {
   }
 
   init () {
+    console.log(this)
+    
     this.el = setInstanceElement(this.name, 'donut')
 
     let svg = this.buildChartSvg()

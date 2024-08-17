@@ -4,6 +4,7 @@ import IconBtn from '../components/IconBtn.astro';
 
 import { getCollection } from 'astro:content';
 import DonutChart from '../components/chart/DonutChart.astro';
+import DataTable from '../components/table/DataTable.astro';
 // const members = await getCollection('members')
 
 ---
@@ -14,6 +15,7 @@ import DonutChart from '../components/chart/DonutChart.astro';
   </Fragment>
 
   <Fragment slot="main">
-    <DonutChart name="test" />
+    <!-- <DonutChart name="test" /> -->
+     <DataTable name="test" />
   </Fragment>
 </Layout>
