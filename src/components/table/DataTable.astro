@@ -1,0 +1,28 @@
+---
+interface Props {
+  name: string;
+  dataSrc?: string;
+}
+
+const { name, dataSrc } = Astro.props;
+---
+
+<table
+  id={ `data-table-${name}` }
+  class="table table--datatable"
+  data-table-data
+></table>
+
+<script>
+  import { DataTable } from "../../scripts/table/DataTable";
+
+  const data = {
+    headers: ['title', 'summary', 'value', 'date'],
+    rows: [
+      { title: 'Test', summary: 'Lorem ipsum dolor', value: 100.00, data: new Date() }
+    ]
+  }
+
+  const dataTable = new DataTable('test', data)
+  dataTable.init()
+</script>
