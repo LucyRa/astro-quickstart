@@ -1,0 +1,27 @@
+---
+interface Props {
+  name: string;
+  dataSrc?: string;
+}
+
+const { name = "test", dataSrc } = Astro.props;
+---
+
+<div
+  id={ `vertical-bar-chart-${name}` }
+  class="chart chart--vertical-bar"
+  data-chart-vertical-bar
+></div>
+
+<script>
+  import VerticalBar from '../../scripts/charts/VerticalBar'
+
+  const verticalBarChart = new VerticalBar()
+  verticalBarChart.init()
+</script>
+
+<style>
+  .chart--vertical-bar {
+    width: 500px;
+  }
+</style>

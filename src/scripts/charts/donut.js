@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-
+import { setInstanceElement } from './utils'
 class Donut {
   constructor (name, data) {
     this.name = name || "test"
@@ -18,16 +18,6 @@ class Donut {
     this.el = null
     this.dimensions = { width: 500, radius: 250 }
     this.tau = Math.PI * 2
-  }
-
-  // TODO: Turn into a promise...
-  setInstanceElement (name) {
-    if (!name) return console.warn('Donut, instance element: No name');
-
-    let targetEl = document.querySelector(`#donut-chart-${name}`)
-    if (!targetEl) return console.warn('Donut, instance element: No target element');
-
-    this.el = targetEl;
   }
 
   setInstanceDimensions (el) {
@@ -88,8 +78,7 @@ class Donut {
   }
 
   init () {
-    console.log('Donut: init()')
-    this.setInstanceElement(this.name)
+    this.el = setInstanceElement(this.name, 'donut')
 
     let svg = this.buildChartSvg()
     this.el.append(svg);
